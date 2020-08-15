@@ -23,5 +23,5 @@ An application to make notes, take notes and forsake notes. Ideal for school, me
 
  ## Sponsored By
 
-The founders of https://www.emojicode.org/
-The minds behind http://sixdegreesofkanyewest.com/
+* The founders of https://www.emojicode.org/
+* The minds behind http://sixdegreesofkanyewest.com/
