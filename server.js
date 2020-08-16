@@ -29,8 +29,8 @@ app.get('/api/notes', (req, res) => {
 
 // Adding Notes
 app.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString();
-    console.log(req.body.id);
+    // req.body.id = notes.length.toString();
+    // console.log(req.body.id);
     const note = req.body
     db.push(note);
     console.log(note);
@@ -42,6 +42,29 @@ app.post('/api/notes', (req, res) => {
         }
     });
 });
+
+// Deleting Notes
+app.delete('/api/notes/:title', (req, res) => { 
+    const result = findByTitle(req.params.title, db)
+    console.log(result);
+    const index = (db.indexOf(result));
+    console.log(index);
+    db.splice(index ,1);
+    fs.writeFile('db/db.json', JSON.stringify(db , null, 2), function (err, data) {
+      if (err) {
+        throw err
+      } else {
+        res.send(data)
+      }
+    });
+});
+
+// Finding Notes
+function findByTitle(title, db) {
+    const result = db.filter(note => note.title === title)[0];
+    // console.log(result);
+    return result;
+} 
 
 // Let's make it public
 app.use(express.static('public'));
